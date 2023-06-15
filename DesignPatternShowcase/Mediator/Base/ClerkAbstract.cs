@@ -1,8 +1,12 @@
-﻿namespace DesignPatternShowcase.Mediator.Base;
+﻿using DesignPatternShowcase.Mediator.Enum;
 
-public abstract class ClerkBase
+namespace DesignPatternShowcase.Mediator.Base;
+
+public abstract class ClerkAbstract
 {
+    protected ClerkAbstract(ShopMediator shopMediator) { }
+    
     public abstract string Name { get; }
-    public bool Available { get; set; }
-    public abstract bool ProcessItemsFromCart(decimal funds);
+    public abstract bool Available { get; }
+    public abstract void Transact(List<CartItems> shopperItems);
 }

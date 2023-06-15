@@ -1,32 +1,15 @@
-﻿namespace DesignPatternShowcase.Mediator.Base;
+﻿using DesignPatternShowcase.Mediator.Enum;
+using DesignPatternShowcase.Mediator.SubTypes;
 
-public abstract class ShopperBase
+namespace DesignPatternShowcase.Mediator.Base;
+
+public abstract class ShopperAbstract
 {
-    protected enum PaymentMethods
-    {
-        Cash = 1,
-        Card = 2
-    }
+    protected ShopperAbstract(ShopMediator shopMediator) { }
     
-    protected enum CartItems
-    {
-        Apple = 1, 
-        Bread = 2, 
-        Soda = 3, 
-        Candy = 4, 
-        Veggies = 5
-    }
-    
-    protected abstract string Name { get; }
-    protected abstract PaymentMethods PaymentMethod { get; }
-    protected abstract decimal AvailableFunds { get; }
-    protected abstract List<CartItems> ItemsInCart { get; set; }
-    
-    // mediator instance
-    protected ShopMediator ShopMediator => ShopMediator.Instance;
-
-    protected void SendItemsToCart()
-    {
-        
-    };
+    public abstract string Name { get; }
+    public abstract List<CartItems> ItemsInCart { get; }
+    public abstract void InitiateCheckout();
+    public abstract void HandleTransactionComplete();
+    protected bool ShoppingComplete { get; set; } = false;
 }
